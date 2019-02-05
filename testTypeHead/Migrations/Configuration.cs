@@ -7,6 +7,7 @@ namespace testTypeHead.Migrations
     using System.Data.Entity.Migrations.Model;
     using System.Data.Entity.Migrations.Sql;
     using System.Linq;
+    using testTypeHead.Models;
 
     internal sealed class Configuration : DbMigrationsConfiguration<WebAppContext>
     {
@@ -22,6 +23,46 @@ namespace testTypeHead.Migrations
 
         protected override void Seed(WebAppContext context)
         {
+            var Customers = new List<Customer>
+            {
+                new Customer
+                {
+                    Id = 1,
+                    Name = "Amine eurl",
+                    IsSubscribedToNewsletter =true
+                },new Customer
+                {
+                    Id = 2,
+                    Name = "mohamed",
+                    IsSubscribedToNewsletter =false
+                },new Customer
+                {
+                    Id = 3,
+                    Name = "moussa",
+                    IsSubscribedToNewsletter =true
+                },new Customer
+                {
+                    Id = 4,
+                    Name = "madjid",
+                    IsSubscribedToNewsletter =true
+                },new Customer
+                {
+                    Id = 5,
+                    Name = "mounir",
+                    IsSubscribedToNewsletter =false
+                },new Customer
+                {
+                    Id = 6,
+                    Name = "halim amine",
+                    IsSubscribedToNewsletter =true
+                }
+            };
+
+            foreach (var Customer in Customers)
+                context.Customers.AddOrUpdate(l => l.Id, Customer);
+
+
+            context.SaveChanges();
             //  This method will be called after migrating to the latest version.
 
             //  You can use the DbSet<T>.AddOrUpdate() helper extension method 
